@@ -45,7 +45,7 @@ function ProductBottle({ eager = false, className = "", interactive = false }: {
         y.set((event.clientY - bounds.top) / bounds.height - 0.5);
       } : undefined}
       onPointerLeave={interactive ? () => { x.set(0); y.set(0); } : undefined}
-      style={{ perspective: interactive && !reduced ? 900 : undefined }}
+      style={interactive && !reduced ? { perspective: 900 } : {}}
     >
       <div aria-hidden="true" className="product-aura" />
       <motion.img
@@ -59,7 +59,7 @@ function ProductBottle({ eager = false, className = "", interactive = false }: {
         initial={{ opacity: 0, scale: 0.88, y: 24 }}
         animate={{ opacity: 1, scale: 1, y: reduced ? 0 : [0, -12, 0] }}
         transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-        style={{ rotateX: interactive && !reduced ? rotateX : undefined, rotateY: interactive && !reduced ? rotateY : undefined, transformStyle: interactive ? "preserve-3d" : undefined }}
+        style={interactive && !reduced ? { rotateX, rotateY, transformStyle: "preserve-3d" } : {}}
       />
       <span aria-hidden="true" className="product-shadow" />
     </motion.div>
